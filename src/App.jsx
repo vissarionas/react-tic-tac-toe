@@ -1,14 +1,16 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import logo from './logo.svg';
+import GameContainer from './game/container';
 import './App.css';
 
 const App = ({ title }) => (
   <div className="App">
     <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
       <p>{title}</p>
+      <GameContainer>
+        something
+      </GameContainer>
     </header>
   </div>
 );
