@@ -1,10 +1,9 @@
 /* eslint-disable no-undef */
-import React from 'react';
-import ReactDOM from 'react-dom';
+import '@testing-library/jest-dom/extend-expect';
+import wrapWithRedux from './redux/testWrapper';
 import App from './App';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  const { getByText } = wrapWithRedux(App);
+  expect(getByText('Redux title!')).toBeInTheDocument();
 });
