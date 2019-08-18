@@ -3,12 +3,9 @@ import { PropTypes } from 'prop-types';
 import './tile.css';
 
 const Tile = ({ mark }) => (
-  <span
-    className="container"
-    data-testid="game-tile"
-  >
+  <div className="tile" data-testid="game-tile">
     {mark}
-  </span>
+  </div>
 );
 
 Tile.propTypes = {

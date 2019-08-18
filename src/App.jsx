@@ -1,24 +1,14 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
 import Game from './game/game';
 import './App.css';
 
-const App = ({ title }) => (
+const App = () => (
   <div className="App">
     <header className="App-header">
-      <p>{title}</p>
+      <p>Tic Tac Toe</p>
       <Game />
     </header>
   </div>
 );
 
-App.propTypes = {
-  title: PropTypes.string.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  title: state.title,
-});
-
-export default connect(mapStateToProps)(App);
+export default App;

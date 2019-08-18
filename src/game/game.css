@@ -1,3 +1,7 @@
-.container {
+.game-container {
   border: 1px solid black;
+  width: 306px;
+  height: 306px;
+  display: flex;
+  flex-wrap: wrap;
 }
