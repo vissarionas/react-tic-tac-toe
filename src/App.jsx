@@ -1,16 +1,14 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import GameContainer from './game/container';
+import Game from './game/game';
 import './App.css';
 
 const App = ({ title }) => (
   <div className="App">
     <header className="App-header">
       <p>{title}</p>
-      <GameContainer>
-        something
-      </GameContainer>
+      <Game />
     </header>
   </div>
 );

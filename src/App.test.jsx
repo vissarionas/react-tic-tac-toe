@@ -15,4 +15,8 @@ describe('Game render', () => {
     const { getByTestId } = renderWithRedux(App);
     expect(getByTestId('game-container')).toBeInTheDocument();
   });
+  it('renders 9 game tiles', () => {
+    const { getAllByTestId } = renderWithRedux(App);
+    expect(getAllByTestId('game-tile')).toHaveLength(9);
+  });
 });
