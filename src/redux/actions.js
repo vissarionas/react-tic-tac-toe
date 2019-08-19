@@ -1,3 +1,3 @@
-export const UPDATE_GAME = 'UPDATE_GAME';
+export const UPDATE_GAME_STATUS = 'UPDATE_GAME_STATUS';
 
-export const updateGameAction = (position) => ({ type: UPDATE_GAME, position });
+export const updateGameStatusAction = (position) => ({ type: UPDATE_GAME_STATUS, position });

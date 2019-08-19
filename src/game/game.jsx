@@ -2,41 +2,40 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { updateGameAction } from '../redux/actions';
+import { updateGameStatusAction } from '../redux/actions';
 import Tile from './gameComponents/tile';
 import './game.css';
 
-const Game = ({ game, updateGame }) => {
-  console.log(game);
-  return (
-    <div
-      className="game-container"
-      data-testid="game-container"
-      onClick={(event) => updateGame(event.target.tabIndex)}
-    >
-      {game.map((mark, index) => {
-        return (
-          <Tile position={index} mark={mark} key={index} />
-        );
-      })}
-    </div>
-  );
-};
+const Game = ({ gameStatus, updateGameStatus }) => (
+  <div
+    className="game-container"
+    data-testid="game-container"
+    role="button"
+    tabIndex={0}
+    onKeyPress={(event) => updateGameStatus(event.target.tabIndex)}
+    onClick={(event) => updateGameStatus(event.target.tabIndex)}
+  >
+    {gameStatus.map((mark, index) => (
+      <Tile position={index} mark={mark} key={index} />
+    ))}
+  </div>
+);
 
 Game.propTypes = {
-  game: PropTypes.arrayOf(PropTypes.string),
+  updateGameStatus: PropTypes.func.isRequired,
+  gameStatus: PropTypes.arrayOf(PropTypes.string),
 };
 
 Game.defaultProps = {
-  game: [],
+  gameStatus: [],
 };
 
 const mapStateToProps = (state) => ({
-  game: state.game,
+  gameStatus: state.gameStatus,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateGame: (position) => dispatch(updateGameAction(position)),
+  updateGameStatus: (position) => dispatch(updateGameStatusAction(position)),
 });
 
 

@@ -1,21 +1,20 @@
 const getInitialState = () => ({
-  game: ['', '', '', '', '', '', '', '', ''],
+  gameStatus: ['', '', '', '', '', '', '', '', ''],
 });
 
-const getUpdatedGame = (game, position, user) => {
-  const updatedGame = game;
-  updatedGame[position] = user;
-  return updatedGame;
+const getUpdatedGameStatus = (gameStatus, position, user) => {
+  const updatedGameStatus = gameStatus;
+  updatedGameStatus[position] = user;
+  return updatedGameStatus;
 };
 
 export default (state = getInitialState(), action) => {
   switch (action.type) {
-    case 'UPDATE_GAME': {
+    case 'UPDATE_GAME_STATUS':
       return ({
         ...state,
-        game: getUpdatedGame(state.game, action.position, 'user'),
+        gameStatus: [...getUpdatedGameStatus(state.gameStatus, action.position, 'user')],
       });
-    }
     default:
       return state;
   }
