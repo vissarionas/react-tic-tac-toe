@@ -12,11 +12,11 @@ const Game = ({ gameStatus, updateGameStatus }) => (
     data-testid="game-container"
     role="button"
     tabIndex={0}
-    onKeyPress={(event) => updateGameStatus(event.target.tabIndex)}
-    onClick={(event) => updateGameStatus(event.target.tabIndex)}
+    onKeyPress={(event) => updateGameStatus(event.target.tabIndex, 'user')}
+    onClick={(event) => updateGameStatus(event.target.tabIndex, 'user')}
   >
-    {gameStatus.map((mark, index) => (
-      <Tile position={index} mark={mark} key={index} />
+    {gameStatus.map((player, index) => (
+      <Tile position={index} player={player} key={index} />
     ))}
   </div>
 );
@@ -35,7 +35,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  updateGameStatus: (position) => dispatch(updateGameStatusAction(position)),
+  updateGameStatus: (position, player) => {
+    dispatch(updateGameStatusAction(position, player));
+    console.log("computer's turn");
+  },
 });
 
 

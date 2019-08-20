@@ -2,25 +2,25 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import './tile.css';
 
-const Tile = ({ position, mark }) => (
+const Tile = ({ position, player }) => (
   <div
     role="button"
     tabIndex={position}
     className="tile"
     data-testid="game-tile"
   >
-    {mark}
+    {player}
   </div>
 );
 
 Tile.propTypes = {
   position: PropTypes.number,
-  mark: PropTypes.string,
+  player: PropTypes.string,
 };
 
 Tile.defaultProps = {
   position: 0,
-  mark: '',
+  player: '',
 };
 
 export default Tile;

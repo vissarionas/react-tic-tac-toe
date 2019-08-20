@@ -13,7 +13,11 @@ export default (state = getInitialState(), action) => {
     case 'UPDATE_GAME_STATUS':
       return ({
         ...state,
-        gameStatus: [...getUpdatedGameStatus(state.gameStatus, action.position, 'user')],
+        gameStatus: [...getUpdatedGameStatus(
+          state.gameStatus,
+          action.update.position,
+          action.update.player,
+        )],
       });
     default:
       return state;
