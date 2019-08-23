@@ -6,32 +6,40 @@ import { updateGameStatusAction } from '../redux/actions';
 import Tile from './gameComponents/tile';
 import './game.css';
 
-const Game = ({ gameStatus, updateGameStatus }) => (
+const clickHandler = (winner, event, callback) => {
+  if (!winner) callback('user', event.target.tabIndex);
+};
+
+const Game = ({ gameStatus, winner, updateGameStatus }) => (
   <div
     className="game-container"
     data-testid="game-container"
     role="button"
     tabIndex={0}
-    onKeyPress={(event) => updateGameStatus('user', event.target.tabIndex)}
-    onClick={(event) => updateGameStatus('user', event.target.tabIndex)}
+    onKeyPress={(event) => clickHandler(winner, event, updateGameStatus)}
+    onClick={(event) => clickHandler(winner, event, updateGameStatus)}
   >
     {Object.keys(gameStatus).map((key) => (
       <Tile player={gameStatus[key]} index={key} key={key} />
     ))}
+    <p>{winner}</p>
   </div>
 );
 
 Game.propTypes = {
-  updateGameStatus: PropTypes.func.isRequired,
   gameStatus: PropTypes.objectOf(PropTypes.string),
+  winner: PropTypes.string,
+  updateGameStatus: PropTypes.func.isRequired,
 };
 
 Game.defaultProps = {
   gameStatus: {},
+  winner: '',
 };
 
 const mapStateToProps = (state) => ({
   gameStatus: state.gameStatus,
+  winner: state.winner,
 });
 
 const mapDispatchToProps = (dispatch) => ({
