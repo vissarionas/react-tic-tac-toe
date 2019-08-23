@@ -14,12 +14,11 @@ const Tile = ({ index, player }) => (
 );
 
 Tile.propTypes = {
-  index: PropTypes.number,
+  index: PropTypes.string.isRequired,
   player: PropTypes.string,
 };
 
 Tile.defaultProps = {
-  index: 0,
   player: '',
 };
 

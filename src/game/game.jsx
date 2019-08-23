@@ -15,19 +15,19 @@ const Game = ({ gameStatus, updateGameStatus }) => (
     onKeyPress={(event) => updateGameStatus('user', event.target.tabIndex)}
     onClick={(event) => updateGameStatus('user', event.target.tabIndex)}
   >
-    {gameStatus.map((player, index) => (
-      <Tile player={player} index={index} key={index} />
+    {Object.keys(gameStatus).map((key) => (
+      <Tile player={gameStatus[key]} index={key} key={key} />
     ))}
   </div>
 );
 
 Game.propTypes = {
   updateGameStatus: PropTypes.func.isRequired,
-  gameStatus: PropTypes.arrayOf(PropTypes.string),
+  gameStatus: PropTypes.objectOf(PropTypes.string),
 };
 
 Game.defaultProps = {
-  gameStatus: [],
+  gameStatus: {},
 };
 
 const mapStateToProps = (state) => ({
