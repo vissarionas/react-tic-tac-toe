@@ -20,7 +20,7 @@ const Game = ({ gameStatus, winner, updateGameStatus }) => (
     onClick={(event) => clickHandler(winner, event, updateGameStatus)}
   >
     {Object.keys(gameStatus).map((key) => (
-      <Tile player={gameStatus[key]} index={key} key={key} />
+      <Tile player={gameStatus[key]} index={key} key={key} data-testid="game-tile" />
     ))}
     <p>{winner}</p>
   </div>
