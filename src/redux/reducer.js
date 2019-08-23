@@ -22,10 +22,10 @@ const availablePositions = (gameStatus) => (
 );
 
 const possibleWinCompinations = (gameStatus) => {
-  const userDetectedCombinations = WIN_COMBINATIONS.filter((combination) => (
+  const userCombinations = WIN_COMBINATIONS.filter((combination) => (
     combination.filter((position) => gameStatus[position] === 'user').length === 2
   ));
-  return userDetectedCombinations.filter((combination) => (
+  return userCombinations.filter((combination) => (
     combination.filter((position) => gameStatus[position] === 'com').length === 0
   ));
 };
@@ -36,6 +36,15 @@ const computerSelection = (gameStatus) => {
     return possibleWinCombinations[0].filter((position) => !gameStatus[position])[0];
   }
   return _.sample(availablePositions(gameStatus));
+};
+
+const winCombinationFound = (gameStatus) => {
+  const winCombination = WIN_COMBINATIONS.filter((combination) => (
+    combination.filter((position) => gameStatus[position] === 'com').length === 3
+    || combination.filter((position) => gameStatus[position] === 'user').length === 3
+  ));
+  if (winCombination.length) return gameStatus[winCombination[0][0]];
+  return null;
 };
 
 const getUpdatedGameStatus = (gameStatus, player, position) => {
@@ -53,6 +62,7 @@ export default (state = initialState(), action) => {
         player,
         position,
       );
+      console.log(winCombinationFound(updatedGameStatus));
       return ({
         ...state,
         gameStatus: { ...updatedGameStatus },
